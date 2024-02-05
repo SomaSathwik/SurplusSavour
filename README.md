@@ -1,4 +1,4 @@
-SurplusSavour
+#SurplusSavour
 
 The website enables local restaurants and charities to connect, facilitating the seamless donation of surplus food. Donors, such as restaurants will specify designated time 
 slots when surplus food is available for collection by nearby charities or food banks. The website provides live updates on food availability, sending notifications to 
