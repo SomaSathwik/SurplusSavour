@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        section {
+            margin: 20px;
+        }
+
+        .container {
+            width: 50%;
+            margin: auto;
+        }
+
+        .registration-type {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .registration-type label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .registration-type select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .registration-form {
+            display: none;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .registration-form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .registration-form input,
+        .registration-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .registration-form button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .registration-form button:hover {
+            background-color: #555;
+        }
+
+        .login-message {
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Registration Page</h1>
+    </header>
+
+    <section class="container">
+        <div class="registration-type">
+            <h2>Select Registration Type</h2>
+            <label for="registrationType">I am a:</label>
+            <select id="registrationType" onchange="toggleRegistrationForm()">
+                <option value="select">Select</option>
+                <option value="foodDonor">Food Donor</option>
+                <option value="foodReceiver">Food Receiver</option>
+            </select>
+        </div>
+
+        <!-- Food Donor Registration Form -->
+        <div class="registration-form" id="foodDonorRegistrationForm">
+            <h2>Food Donor Registration</h2>
+            <form id="foodDonorRegistrationForm" onsubmit="return validateRegistrationForm('foodDonor')">
+                <label for="foodDonorName">Food Donor Name:</label>
+                <input type="text" id="foodDonorName" name="foodDonorName" required>
+
+                <label for="ownerName">Owner Name:</label>
+                <input type="text" id="ownerName" name="ownerName" required>
+
+                <label for="phoneNumber">Phone Number(Enter a 10-digit number):</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Password (Minimum 6 characters):</label>
+                <input type="password" id="password" name="password" minlength="6" required>
+
+                <label for="confirmPassword">Confirm Password (Minimum 6 characters):</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" minlength="6" required>
+
+                <label for="address">Address (Max 40 characters):</label>
+                <input type="text" id="address" name="address" maxlength="40" required>
+
+                <label for="proofDocument">Upload Proof Document (PDF only):</label>
+                <input type="file" id="proofDocument" name="proofDocument" accept=".pdf" required>
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+
+        <!-- Food Receiver Registration Form -->
+        <div class="registration-form" id="foodReceiverRegistrationForm">
+            <h2>Food Receiver Registration</h2>
+            <form id="foodReceiverRegistrationForm" onsubmit="return validateRegistrationForm('foodReceiver')">
+                <label for="foodReceiverName">Food Receiver Name:</label>
+                <input type="text" id="foodReceiverName" name="foodReceiverName" required>
+
+                <label for="contactPerson">Contact Person Name:</label>
+                <input type="text" id="contactPerson" name="contactPerson" required>
+
+                <label for="foodReceiverPhoneNumber">Phone Number(Enter a 10-digit number):</label>
+                <input type="tel" id="foodReceiverPhoneNumber" name="foodReceiverPhoneNumber" pattern="[0-9]{10}" required>
+
+                <label for="foodReceiverEmail">Email:</label>
+                <input type="email" id="foodReceiverEmail" name="foodReceiverEmail" required>
+
+                <label for="foodReceiverPassword">Password (Minimum 6 characters):</label>
+                <input type="password" id="foodReceiverPassword" name="foodReceiverPassword" minlength="6" required>
+
+                <label for="foodReceiverConfirmPassword">Confirm Password (Minimum 6 characters):</label>
+                <input type="password" id="foodReceiverConfirmPassword" name="foodReceiverConfirmPassword" minlength="6" required>
+
+                <label for="foodReceiverAddress">Address (Max 40 characters):</label>
+                <input type="text" id="foodReceiverAddress" name="foodReceiverAddress" maxlength="40" required>
+
+                <label for="proofDocument">Upload Proof Document (PDF only):</label>
+                <input type="file" id="proofDocument" name="proofDocument" accept=".pdf" required>
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+
+        <p class="login-message" id="loginMessage"></p>
+        <a href="login.html" id="loginLink">Already registered? Click here to login.</a>
+    </section>
+
+    <script>
+        function toggleRegistrationForm() {
+            var registrationType = document.getElementById("registrationType").value;
+            var foodDonorForm = document.getElementById("foodDonorRegistrationForm");
+            var foodReceiverForm = document.getElementById("foodReceiverRegistrationForm");
+
+            if (registrationType === "foodDonor") {
+                foodDonorForm.style.display = "block";
+                foodReceiverForm.style.display = "none";
+            } else if (registrationType === "foodReceiver") {
+                foodDonorForm.style.display = "none";
+                foodReceiverForm.style.display = "block";
+            } else {
+                foodDonorForm.style.display = "none";
+                foodReceiverForm.style.display = "none";
+            }
+        }
+
+        function validateRegistrationForm(type) {
+            var password = document.getElementById(type + "Password").value;
+            var confirmPassword = document.getElementById("confirm" + type + "Password").value;
+
+            if (password.length < 6 || confirmPassword.length < 6) {
+                alert("Passwords should be at least 6 characters long. Please re-enter.");
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match. Please re-enter.");
+                return false;
+            }
+
+            // Show the registration success message
+            document.getElementById("loginMessage").innerText = "Registered successfully!";
+
+            // Save registration status to localStorage upon form submission
+            localStorage.setItem("isRegistered", true);
+
+            // Show the login link
+            document.getElementById("loginLink").style.display = "block";
+
+            // Hide registration forms
+            document.getElementById("foodDonorRegistrationForm").style.display = "none";
+            document.getElementById("foodReceiverRegistrationForm").style.display = "none";
+
+            // Prevent form submission (for testing purposes)
+            return false;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Check if the registration form has been submitted before
+            var isRegistered = localStorage.getItem("isRegistered");
+
+            if (isRegistered) {
+                // Hide registration forms
+                document.getElementById("foodDonorRegistrationForm").style.display = "none";
+                document.getElementById("foodReceiverRegistrationForm").style.display = "none";
+
+                // Show the login link
+                document.getElementById("loginLink").style.display = "block";
+
+                // Clear the registration status on page load
+                localStorage.removeItem("isRegistered");
+            }
+        });
+    </script>
+</body>
+
+</html>
