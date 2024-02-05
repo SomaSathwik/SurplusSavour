@@ -18,6 +18,8 @@
             color: #fff;
             padding: 1em;
             text-align: center;
+            width: 90%;
+            margin: auto;
         }
 
         section {
@@ -115,28 +117,35 @@
         <div class="registration-form" id="foodDonorRegistrationForm">
             <h2>Food Donor Registration</h2>
             <form id="foodDonorRegistrationForm" onsubmit="return validateRegistrationForm('foodDonor')">
-                <label for="foodDonorName">Food Donor Name:</label>
-                <input type="text" id="foodDonorName" name="foodDonorName" required>
+                <label for="foodDonorName">Food Donor Name</label>
+                <input type="text" id="foodDonorName" name="foodDonorName" pattern="[A-Za-z ]+" required
+                    oninvalid="setCustomValidity('Only alphabets and spaces are allowed. No special characters or numerics.')"
+                    oninput="setCustomValidity('')">
 
-                <label for="ownerName">Owner Name:</label>
-                <input type="text" id="ownerName" name="ownerName" required>
+                <label for="ownerName">Owner Name</label>
+                <input type="text" id="ownerName" name="ownerName" pattern="[A-Za-z ]+" required
+                    oninvalid="setCustomValidity('Only alphabets and spaces are allowed. No special characters or numerics.')"
+                    oninput="setCustomValidity('')">
 
-                <label for="phoneNumber">Phone Number(Enter a 10-digit number):</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required>
+                <label for="phoneNumber">Phone Number (Enter a 10-digit number)</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required
+                    oninvalid="setCustomValidity('Only numeric characters are allowed. No special characters or alphabets.')"
+                    oninput="setCustomValidity('')">
 
-                <label for="email">Email:</label>
+                <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
 
-                <label for="password">Password (Minimum 6 characters):</label>
-                <input type="password" id="password" name="password" minlength="6" required>
+                <label for="password">Password (Minimum 6 characters)</label>
+                <input type="password" id="foodDonorPassword" name="password" minlength="6" required>
 
-                <label for="confirmPassword">Confirm Password (Minimum 6 characters):</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" minlength="6" required>
+                <label for="confirmPassword">Confirm Password (Minimum 6 characters)</label>
+                <input type="password" id="confirmFoodDonorPassword" name="confirmPassword" minlength="6" required
+                    oninput="validatePasswordMatch('foodDonor')">
 
-                <label for="address">Address (Max 40 characters):</label>
+                <label for="address">Address (Max 40 characters)</label>
                 <input type="text" id="address" name="address" maxlength="40" required>
 
-                <label for="proofDocument">Upload Proof Document (PDF only):</label>
+                <label for="proofDocument">Upload ID Proof Document (PDF only)</label>
                 <input type="file" id="proofDocument" name="proofDocument" accept=".pdf" required>
 
                 <button type="submit">Register</button>
@@ -147,28 +156,35 @@
         <div class="registration-form" id="foodReceiverRegistrationForm">
             <h2>Food Receiver Registration</h2>
             <form id="foodReceiverRegistrationForm" onsubmit="return validateRegistrationForm('foodReceiver')">
-                <label for="foodReceiverName">Food Receiver Name:</label>
-                <input type="text" id="foodReceiverName" name="foodReceiverName" required>
+                <label for="foodReceiverName">Food Receiver Name</label>
+                <input type="text" id="foodReceiverName" name="foodReceiverName" pattern="[A-Za-z ]+" required
+                    oninvalid="setCustomValidity('Only alphabets and spaces are allowed. No special characters or numerics.')"
+                    oninput="setCustomValidity('')">
 
-                <label for="contactPerson">Contact Person Name:</label>
-                <input type="text" id="contactPerson" name="contactPerson" required>
+                <label for="contactPerson">Contact Person Name</label>
+                <input type="text" id="contactPerson" name="contactPerson" pattern="[A-Za-z ]+" required
+                    oninvalid="setCustomValidity('Only alphabets and spaces are allowed. No special characters or numerics.')"
+                    oninput="setCustomValidity('')">
 
-                <label for="foodReceiverPhoneNumber">Phone Number(Enter a 10-digit number):</label>
-                <input type="tel" id="foodReceiverPhoneNumber" name="foodReceiverPhoneNumber" pattern="[0-9]{10}" required>
+                <label for="foodReceiverPhoneNumber">Phone Number (Enter a 10-digit number)</label>
+                <input type="tel" id="foodReceiverPhoneNumber" name="foodReceiverPhoneNumber" pattern="[0-9]{10}" required
+                    oninvalid="setCustomValidity('Only numeric characters and a 10-digit number are allowed.')"
+                    oninput="setCustomValidity('')">
 
-                <label for="foodReceiverEmail">Email:</label>
+                <label for="foodReceiverEmail">Email</label>
                 <input type="email" id="foodReceiverEmail" name="foodReceiverEmail" required>
 
-                <label for="foodReceiverPassword">Password (Minimum 6 characters):</label>
+                <label for="foodReceiverPassword">Password (Minimum 6 characters)</label>
                 <input type="password" id="foodReceiverPassword" name="foodReceiverPassword" minlength="6" required>
 
-                <label for="foodReceiverConfirmPassword">Confirm Password (Minimum 6 characters):</label>
-                <input type="password" id="foodReceiverConfirmPassword" name="foodReceiverConfirmPassword" minlength="6" required>
+                <label for="confirmFoodReceiverPassword">Confirm Password (Minimum 6 characters)</label>
+                <input type="password" id="confirmFoodReceiverPassword" name="foodReceiverConfirmPassword" minlength="6" required
+                    oninput="validatePasswordMatch('foodReceiver')">
 
-                <label for="foodReceiverAddress">Address (Max 40 characters):</label>
+                <label for="foodReceiverAddress">Address (Max 40 characters)</label>
                 <input type="text" id="foodReceiverAddress" name="foodReceiverAddress" maxlength="40" required>
 
-                <label for="proofDocument">Upload Proof Document (PDF only):</label>
+                <label for="proofDocument">Upload ID Proof Document (PDF only)</label>
                 <input type="file" id="proofDocument" name="proofDocument" accept=".pdf" required>
 
                 <button type="submit">Register</button>
@@ -211,36 +227,33 @@
                 return false;
             }
 
-            // Show the registration success message
             document.getElementById("loginMessage").innerText = "Registered successfully!";
-
-            // Save registration status to localStorage upon form submission
             localStorage.setItem("isRegistered", true);
-
-            // Show the login link
             document.getElementById("loginLink").style.display = "block";
-
-            // Hide registration forms
             document.getElementById("foodDonorRegistrationForm").style.display = "none";
             document.getElementById("foodReceiverRegistrationForm").style.display = "none";
-
-            // Prevent form submission (for testing purposes)
             return false;
         }
 
+        function validatePasswordMatch(type) {
+            var password = document.getElementById(type + "Password").value;
+            var confirmPassword = document.getElementById("confirm" + type + "Password").value;
+            var confirmationMessage = document.getElementById("loginMessage");
+
+            if (password !== confirmPassword) {
+                confirmationMessage.innerText = "Passwords do not match. Please re-enter.";
+            } else {
+                confirmationMessage.innerText = "";
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
-            // Check if the registration form has been submitted before
             var isRegistered = localStorage.getItem("isRegistered");
 
             if (isRegistered) {
-                // Hide registration forms
                 document.getElementById("foodDonorRegistrationForm").style.display = "none";
                 document.getElementById("foodReceiverRegistrationForm").style.display = "none";
-
-                // Show the login link
                 document.getElementById("loginLink").style.display = "block";
-
-                // Clear the registration status on page load
                 localStorage.removeItem("isRegistered");
             }
         });

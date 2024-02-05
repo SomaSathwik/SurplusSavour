@@ -18,6 +18,8 @@
             color: #fff;
             padding: 1em;
             text-align: center;
+            width: 90%; /* Reduced width */
+            margin: auto; /* Centered */
         }
 
         section {
@@ -74,11 +76,13 @@
         <div class="login-form">
             <h2>Login</h2>
             <form onsubmit="return validateLoginForm()">
-                <label for="loginEmail">Email:</label>
+                <label for="loginEmail">Email</label> <!-- Removed colon -->
                 <input type="email" id="loginEmail" name="loginEmail" required>
 
-                <label for="loginPassword">Password (Min. 6 characters):</label>
-                <input type="password" id="loginPassword" name="loginPassword" minlength="6" required>
+                <label for="loginPassword">Password (Min. 6 characters)</label> <!-- Removed colon -->
+                <input type="password" id="loginPassword" name="loginPassword" minlength="6" required
+                    oninvalid="setCustomValidity('Password should be at least 6 characters long. Please re-enter.')"
+                    oninput="setCustomValidity('')">
 
                 <button type="submit">Login</button>
             </form>
