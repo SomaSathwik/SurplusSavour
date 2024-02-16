@@ -19,7 +19,7 @@ header {
     padding: 1em;
     text-align: center;
     margin-bottom: 0;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -29,6 +29,7 @@ header {
 
 .dashboard p#name, .dashboard p#phone {
     color: #000000; /* Name and phone in black color */
+	text-align: left;
 }
 
         .dashboard {
@@ -79,7 +80,7 @@ header {
         }
 
         .dashboard button {
-            background-color: #3498db; /* Updated button background color */
+            background-color: #CF1717; /* Updated button background color */
             color: #ecf0f1;
             padding: 10px 20px;
             border: none;
@@ -116,10 +117,10 @@ header {
     <div class="dashboard" id="dashboard">
         <h2>Donor Profile</h2>
         <p id="name">Name:</p>
-        <p id="phone">Phone:</p>
+        <p id="phone">Phone Number:</p>
 
         <div class="food-input">
-            <label for="available-food">Food Available</label>
+            <label for="available-food">Type of Food Available</label>
             <input type="text" id="available-food" name="available-food" placeholder="Enter Available Food">
         </div>
 
